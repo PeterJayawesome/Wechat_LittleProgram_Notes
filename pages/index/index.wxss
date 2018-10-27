@@ -1,0 +1,116 @@
+/**index.wxss**/
+/* .userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+} */
+
+.list {
+  width: 100%;
+}
+
+.list_head {
+  display: block;
+  text-align: center;
+  padding: 1.3em 0;
+  background-color: #aaa;
+}
+
+.item_box {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.item {
+  position: relative;
+  border-top: 2rpx solid #eee;
+  height: 120rpx;
+  line-height: 120rpx;
+  overflow: hidden;
+}
+
+.open {
+  max-height: 500rpx;
+  height: auto;
+}
+
+.item_box:last-child {
+  border-bottom: 2rpx solid #eee;
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+  width: 90%;
+  z-index: 3;
+  padding: 0 5%;
+  transition: left 0.3s ease-in-out;
+}
+
+.inner.txt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inner.open {
+  position: relative;
+  z-index: 99;
+  overflow: inherit;
+  text-overflow: inherit;
+  white-space: pre-wrap;
+  line-height: 1.4;
+  padding: 1.2em 5%;
+}
+
+.inner.del {
+  padding: 0;
+  background-color: #e64340;
+  width: 180rpx;
+  text-align: center;
+  z-index: 2;
+  right: 0;
+  height: 100%;
+  color: #fff;
+}
+
+.inner.del text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.item:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.textarea_wrp {
+  position: sticky;
+  bottom: -1rpx;
+  z-index: 99;
+  width: 100%;
+  background-color: #fff;
+}
+
+textarea {
+  padding: 1em;
+  width: 650rpx;
+  margin-top: 3rpx;
+  height: 1.6em;
+}

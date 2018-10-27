@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view> -->
+  <view class="list">
+    <text class="list_head">我的记录列表</text>
+    <view class="item_box" bindtap="onTap" bindtouchstart='touchS' bindtouchmove='touchM' bindtouchend='touchE'>
+      <view wx:for="{{list}}" wx:key="{{index}}" class="item {{item.open? 'open':''}}">
+        <view style="{{item.style}}" id= "txt{{index}}" data-isdel= "false" data-index="{{index}}" class="inner {{item.open? 'open':'txt'}}">{{item.txt}}</view>
+        <view data-index="{{index}}" data-isdel= "true" class="inner del"><text data-isdel="true" data-index="{{index}}">删除</text></view>
+      </view>
+    </view>
+  </view>
+  <view class="textarea_wrp">
+    <textarea id='textarea' placeholder='记一下…' placeholder-style="color:#999999" auto-height bindconfirm='textConfirm' value='{{text}}'></textarea>
+  </view>
+</view>
