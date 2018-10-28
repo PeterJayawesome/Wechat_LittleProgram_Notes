@@ -48,8 +48,8 @@ Page({
     // }
   },
   onReady: function () {
-    // var list = wx.getStorageSync("notes");
-    var list = app.globalData.testList;
+    var list = wx.getStorageSync("notes");
+    // var list = app.globalData.testList;
     if (list) {
       this.setData({
         list: list
