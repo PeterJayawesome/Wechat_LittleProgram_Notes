@@ -13,12 +13,13 @@ Page({
     delBtnWidth: 180,
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+  // bindViewTap: function() {
+  //   wx.navigateTo({
+  //     url: '../logs/logs'
+  //   })
+  // },
   onLoad: function () {
+    // 读取删除键宽度
     this.initBtnWidth();
     // if (app.globalData.userInfo) {
     //   this.setData({
@@ -48,6 +49,7 @@ Page({
     // }
   },
   onReady: function () {
+    // 读取缓存中的记录
     var list = wx.getStorageSync("notes");
     // var list = app.globalData.testList;
     if (list) {
@@ -69,6 +71,7 @@ Page({
     if(e.touches.length == 1) {
       var index = e.target.dataset.index;
       var list = this.data.list;
+      // 判断是否点击的删除按键
       if(e.target.dataset.isdel == "true"){
         list.splice(index,1);
         wx.setStorage({
@@ -79,7 +82,8 @@ Page({
           list: list
         });
       } else {
-        const query = wx.createSelectorQuery();
+        // 点击记录txt展开
+        // const query = wx.createSelectorQuery();
         // var getHeight = query.select('#txt'+index).boundingClientRect((rect)=>{
         //   list[index].delStyle = "line-height:"+rect.height+"px";
           // console.log(list);
@@ -99,8 +103,10 @@ Page({
       }
     }
   },
+  // 触摸事件开始
   touchS: function(e) {
     // console.log(e);
+    // 触摸事件在记录txt上
     if(e.touches.length == 1 && e.target.dataset.isdel=="false") {
       this.setData({
         startX: e.touches[0].clientX
@@ -111,12 +117,15 @@ Page({
     // console.log(e.target.dataset.isdel);
     if(e.touches.length == 1 && e.target.dataset.isdel=="false"){
       var currX = e.touches[0].clientX;
+      // 当前触摸点与起始点距离
       var disX = this.data.startX - currX;
       var delBtnWidth = this.data.delBtnWidth;
       var style = "";
+      // 向左划超过删除键宽度
       if(disX >= delBtnWidth) {
         style = "left:-"+delBtnWidth+"px";
       }else if(disX > 0) {
+        // 向左滑小于键宽
         style = "left:-"+disX+"px";
       }
       var index = e.target.dataset.index;
@@ -133,6 +142,7 @@ Page({
       // var endX = e.changedToucheds[0].clientX;
       var disX = this.data.startX - e.changedTouches[0].clientX;
       var delBtnWidth = this.data.delBtnWidth;
+      // 左滑超过键宽1/2时展开
       var style = disX > delBtnWidth/2 ? "left:-"+delBtnWidth+"px" : "";
       var index = e.target.dataset.index;
       var list = this.data.list;
@@ -147,6 +157,7 @@ Page({
     var content = e.detail.value;
     var list = this.data.list;
     list.push({txt:content,style:"",open:""});
+    // 存入本地缓存
     wx.setStorage({
       key: 'notes',
       data: list,
@@ -160,6 +171,7 @@ Page({
     var real = 0;
     try {
       var res = wx.getSystemInfoSync().windowWidth;
+      // 根据比例算出删除键宽
       var scale = 750 / this.data.delBtnWidth;
       real = Math.floor(res/scale);
       this.setData({
